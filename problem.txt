@@ -1,0 +1,54 @@
+
+Please spend some time completing the problems below -- it should not
+take long, perhaps an hour or so. Use the language and IDE/SDK/tools
+of your choice to create a project which addresses the problems
+below. (Some example text-file parsing code is provided in C++, which
+you may use directly or rewrite as you see fit.)
+
+In approaching the problems, keep in mind code organization, design,
+and readability -- these are as important as accuracy (you may be
+asked to extend this code or discuss design considerations).
+
+Once complete, we will set up a screen-sharing session to review your
+solution; be sure that everything compiles, runs, and can be
+demonstrated. We will discuss the details of your solution, run some
+sample problems, debug any issues that come up, and then extend things
+to address some more detailed design and implementation questions.
+
+Please do not hesitate to get in touch if you have questions or if
+anything needs clarification.
+
+
+
+(1) We'll be creating code used to answer questions about the
+    relationships of people in a "community". So first, create simple
+    classes for the following types of objects:
+  - Person:
+    - should have first name, last name, and email properties
+    - email is required and uniquely identifies a person
+  - Community:
+    - a container for all created Person objects
+    - and the ability to look up a person by their (unique) email address
+
+
+(2) Add functionality for creating the following relationships between
+    people:
+  - parent, child:
+    - a person can have any number of children, but at most two parents
+  - friend
+    - symmetric relationship between two people
+
+
+(3) Add a 'parse' function to Community, which parses a specially
+    prepared text file and loads the Person and relationship info
+  - you may use/modify the attached parse.cpp (or write your own)
+  - no need to do any error checking, assume the file is properly
+    formatted
+
+
+(4) Provide the following functionality:
+  - an isRelated() function on Person, which returns true if the
+    passed-in person is related via some sequence of parent/child
+    relationships
+  - a family() function on Person, which determines and returns the
+    group of all people related to that Person
