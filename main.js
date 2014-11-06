@@ -79,6 +79,7 @@ var parsingCompleteCallback = function() {
                 break;
             default:
                 console.log('Unknown selection. Try Again!');
+                promptUser();
                 break;
         }
     }).on('close', function() {

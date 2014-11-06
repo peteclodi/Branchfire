@@ -1,0 +1,8 @@
+This application was written using the latest version of Node.js on Windows (0.10.33)
+There are known issues with Node.js under CygWin as it is not the most current version and may cause problems. There are workarounds, but it would be easier to utilize the Windows version.
+OSX and newer Linux distros seem to be OK as well.
+
+Running the Application:
+
+On the command line in the same directory as the source files:
+node main.js people.txt
