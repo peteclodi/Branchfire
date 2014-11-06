@@ -1,4 +1,8 @@
 var Person = function(email, firstname, lastname) {
+    if(!email) {
+        throw 'Invalid person! It must contain an email address';
+    }
+
     this.email = email;
     this.firstname = firstname;
     this.lastname = lastname;
@@ -58,40 +62,6 @@ Person.prototype.family = function() {
 
 Person.prototype.getName = function() {
     return this.firstname + ' ' + this.lastname;
-};
-
-Person.prototype.displayPerson = function() {
-    console.log(this.getName() + '<' + this.email + '>');
-
-    console.log('\tParents:');
-    if(this.parents.length === 0) {
-        console.log('\t\tNo Parents');
-    }
-    else {
-        this.parents.forEach(function(parent) {
-            console.log('\t\t' + parent.getName());
-        });
-    }
-
-    console.log('\tChildren:');
-    if(this.children.length === 0) {
-        console.log('\t\tNo Children');
-    }
-    else {
-        this.children.forEach(function(child) {
-            console.log('\t\t' + child.getName());
-        });
-    }
-
-    console.log('\tFriends:');
-    if(this.friends.length === 0) {
-        console.log('\t\tNo Friends');
-    }
-    else {
-        this.friends.forEach(function(friend) {
-            console.log('\t\t' + friend.getName());
-        });
-    }
 };
 
 exports.Person = Person;

@@ -5,13 +5,13 @@ var Person = require('./person.js').Person;
 Parser = function() {};
 
 Parser.prototype.parse = function (filename, community, parsingCompleteCallback, errorCallback) {
-    var rd = readline.createInterface({
+    var rl = readline.createInterface({
         input: fs.createReadStream(filename),
         output: process.stdout,
         terminal: false
     });
     var self = this;
-    rd.on('line', function(line) {
+    rl.on('line', function(line) {
         var personData = line.split(' ');
         switch(personData[0]) {
             case 'P':
@@ -53,9 +53,7 @@ Parser.prototype.parse = function (filename, community, parsingCompleteCallback,
             default:
                 throw 'Unknown code: ' + personData[0];
         }
-    });
-
-    rd.on('close', function() {
+    }).on('close', function() {
         if(parsingCompleteCallback !== null) {
             parsingCompleteCallback();
         }

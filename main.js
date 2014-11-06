@@ -19,7 +19,7 @@ var parsingCompleteCallback = function() {
     promptUser();
 
     rl.on('line', function(line) {
-        switch(line) {
+        switch(line.trim()) {
             case 'R':
             case 'r':
                 rl.question('Pick the first person\n' + community.getPersonSelectionList(), function(answer) {
@@ -45,6 +45,7 @@ var parsingCompleteCallback = function() {
                                     console.log('Exception while looking up related people' + exc);
                                 }
                             }
+                            promptUser();
                         });
                     }
                 });
@@ -61,14 +62,15 @@ var parsingCompleteCallback = function() {
                             var person = community.getPersonAt(personIndex);
                             var family = person.family();
                             console.log(person.getName() + "'s family");
-                            console.log(family.grandparents.length > 0 ? 'Grandparents:\n' + family.grandparents : 'They have no grandparents');
-                            console.log(family.parents.length > 0 ? 'Parents:\n' + family.parents : 'They have no parents');
-                            console.log(family.children.length > 0 ? 'Children:\n' + family.children : 'They have no children');
+                            console.log(family.grandparents.length > 0 ? 'Grandparents:\n\t' + family.grandparents : 'They have no grandparents');
+                            console.log(family.parents.length > 0 ? 'Parents:\n\t' + family.parents : 'They have no parents');
+                            console.log(family.children.length > 0 ? 'Children:\n\t' + family.children : 'They have no children');
                         }
                         catch (exc) {
                             console.log('Exception while looking up related people' + exc);
                         }
                     }
+                    promptUser();
                 });
                 break;
             case 'Q':
@@ -79,8 +81,6 @@ var parsingCompleteCallback = function() {
                 console.log('Unknown selection. Try Again!');
                 break;
         }
-    }).on('resume', function() {
-        promptUser();
     }).on('close', function() {
         closeApp();
     });
@@ -90,9 +90,8 @@ var parsingErrorCallback = function (error) {
     console.log(error);
 };
 
-parser.parse(process.argv[2], community, parsingCompleteCallback, parsingErrorCallback);
-
 var promptUser = function() {
+    console.log();
     console.log('Which query would you like to perform:');
     console.log('Is [R]elated, Show [F]amily or [Q]uit?');
     rl.prompt();
@@ -102,3 +101,5 @@ var closeApp = function() {
     console.log('Good-Bye!');
     process.exit(0);
 };
+
+parser.parse(process.argv[2], community, parsingCompleteCallback, parsingErrorCallback);

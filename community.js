@@ -1,4 +1,4 @@
-var Community = function(email, firstname, lastname) {
+var Community = function() {
     this.people = [];
 };
 
@@ -13,13 +13,6 @@ Community.prototype.addPerson = function(person) {
     }
 
     this.people.push(person);
-};
-
-Community.prototype.removePerson = function(person) {
-    var personIndex = this.people.indexOf(person);
-    if(personIndex !== -1) {
-        this.people.splice(personIndex, 1);
-    }
 };
 
 Community.prototype.getPersonAt = function(index) {
@@ -39,12 +32,6 @@ Community.prototype.getPersonSelectionList = function() {
     return this.people.map(function(person, index) {
         return '[' + index + '] '+ person.getName();
     }).join('\n') + '\n';
-};
-
-Community.prototype.displayCommunity = function() {
-    this.people.forEach(function(person) {
-        person.displayPerson();
-    });
 };
 
 exports.Community = Community;
